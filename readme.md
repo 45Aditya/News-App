@@ -13,7 +13,8 @@ The News App is a simple and user-friendly application designed to provide real-
 
 ## Screenshot
 
-![Screenshot](asset/screenshot.png)
+![Screenshot](asset/ScreenShot/screenshot.png)
+
 
 
 ## Installation
