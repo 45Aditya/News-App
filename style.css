@@ -118,3 +118,12 @@
     font-size: 1.2rem;
     padding-top: 0.7rem;
 }
+
+.article-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.blog_card {
+    cursor: pointer;
+}

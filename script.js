@@ -1,70 +1,77 @@
 const API_KEY = "8f0879fae1d94b09b9a0dd3371573e0b";
 const url = "https://newsapi.org/v2/everything?q=";
 
-const blogContainer = document.getElementById("blog_container");
-const searchButton = document.getElementById("search_button");
-const searchBar = document.getElementById("input-field");
+const container = document.getElementById("blog_container");
+const searchBtn = document.getElementById("search_button");
+const input = document.getElementById("input-field");
 
-// Function to fetch random news
-async function fetchRandom(query) {
+// Function to fetch news
+async function fetchNews(query) {
     try {
-        const response = await fetch(`${url}${query}&apiKey=${API_KEY}`);
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+        const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
+        if (!res.ok) {
+            throw new Error(`HTTP error! Status: ${res.status}`);
         }
-        const data = await response.json();
+        const data = await res.json();
         return data.articles;
-    } catch (error) {
-        console.error("Error fetching news", error);
+    } catch (err) {
+        console.error("Error fetching news", err);
         return [];
     }
 }
 
 // Function to display news
-async function displayNews(articles) {
+async function showNews(articles) {
     const articlesWithImages = articles.filter(article => article.urlToImage);
-
     const limitedArticles = articlesWithImages.slice(0, 10);
 
-    blogContainer.innerHTML = '';
+    container.innerHTML = '';
 
     limitedArticles.forEach(article => {
-        const articleElement = document.createElement('div');
-        articleElement.classList.add('blog_card');
+        const card = document.createElement('div');
+        card.classList.add('blog_card');
 
-        const imgElement = document.createElement('img');
-        imgElement.src = article.urlToImage;
-        imgElement.alt = article.title;
-        articleElement.appendChild(imgElement);
+        // Create a link element to wrap the entire card
+        const link = document.createElement('a');
+        link.href = article.url;
+        link.target = '_blank';
+        link.classList.add('article-link');
 
-        const titleElement = document.createElement('h2');
-        titleElement.textContent = article.title;
-        articleElement.appendChild(titleElement);
+        const image = document.createElement('img');
+        image.src = article.urlToImage;
+        image.alt = article.title;
+        card.appendChild(image);
 
-        const descElement = document.createElement('p');
-        descElement.textContent = article.description || 'No description available';
-        articleElement.appendChild(descElement);
+        const title = document.createElement('h2');
+        title.textContent = article.title;
+        card.appendChild(title);
 
-        blogContainer.appendChild(articleElement);
+        const desc = document.createElement('p');
+        desc.textContent = article.description || 'No description available';
+        card.appendChild(desc);
+
+        // Append the card to the link, and the link to the container
+        link.appendChild(card);
+        container.appendChild(link);
     });
 }
 
 // Function to handle search
 async function search() {
-    const query = searchBar.value;
-    const articles = await fetchRandom(query);
-    displayNews(articles);
+    const query = input.value;
+    const articles = await fetchNews(query);
+    showNews(articles);
 }
 
 // Function to load random US news on window load
-async function loadInitialNews() {
+async function loadNews() {
     const query = 'us'; 
-    const articles = await fetchRandom(query);
-    displayNews(articles);
+    const articles = await fetchNews(query);
+    showNews(articles);
 }
 
 // Attach event listener to the search button
-searchButton.addEventListener('click', search);
+searchBtn.addEventListener('click', search);
 
 // Load random US news when the window loads
-window.addEventListener('load', loadInitialNews);
+window.addEventListener('load', loadNews);
