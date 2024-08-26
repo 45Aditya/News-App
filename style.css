@@ -79,7 +79,7 @@
     margin-left: 10px;
 }
 
-#blog-container {
+#blog_container {
     padding: 3rem 0;
     display: flex;
     justify-content: flex-start;
@@ -87,7 +87,7 @@
     flex-wrap: wrap;
 }
 
-.blog-card {
+.blog_card {
     width: 280px;
     border: 1px solid#2d4c50;
     border-radius: 10px;
@@ -96,11 +96,11 @@
     margin: 10px;
 }
 
-.blog-card:hover {
+.blog_card:hover {
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.blog-card img{
+.blog_card img{
     width: 100%;
     height: 280px;
     object-fit: cover;
@@ -108,13 +108,13 @@
     margin-bottom: 1rem;
 }
 
-.blog-card h2 {
+.blog_card h2 {
     color: #000;
     font-size: 1.7rem;
     font-weight: 500;
 }
 
-.blog-card p {
+.blog_card p {
     font-size: 1.2rem;
     padding-top: 0.7rem;
 }
