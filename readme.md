@@ -11,6 +11,11 @@ The News App is a simple and user-friendly application designed to provide real-
 - **Clean Interface**: A user-friendly design that makes browsing news articles intuitive and straightforward.
 - **Image-Enhanced Display**: Articles with images are prominently displayed to enhance the visual appeal and provide more context.
 
+## Screenshot
+
+![Screenshot](asset/ScreenShot.png)
+
+
 ## Installation
 
 1. **Clone the Repository**
